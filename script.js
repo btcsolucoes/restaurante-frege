@@ -20,6 +20,36 @@ const artMap = {
   shell: "./assets/crops/shell.png",
 };
 
+const wineFlagMap = {
+  argentina: "argentina",
+  chile: "chile",
+  espanha: "spain",
+  italia: "italy",
+  portugal: "portugal",
+  franca: "france",
+};
+
+const wineTitleMap = {
+  espumantes: "ESPUMANTE",
+  brancos: "BRANCOS",
+  roses: "ROSÉS",
+  tintos: "TINTOS",
+  "formatos especiais": "FORMATOS ESPECIAIS",
+  fortificados: "FORTIFICADOS",
+};
+
+const winePageLayout = [
+  ["Espumantes", "Brancos", "Rosés"],
+  ["Tintos", "Formatos Especiais", "Fortificados"],
+];
+
+function slugify(text) {
+  return text
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
+}
+
 function getNextServiceDay(baseDate, startOffset = 0) {
   const probe = new Date(baseDate);
 
@@ -111,28 +141,87 @@ function renderBlockGroup(group) {
 }
 
 function renderWineGroup(group) {
+  const normalizedTitle = slugify(group.title);
+  const groupTitle = wineTitleMap[normalizedTitle] || group.title.toUpperCase();
+
   return `
-    <section class="menu-group menu-group--wine">
-      <div class="menu-group__header">
-        <h3 class="menu-group__title">${group.title}</h3>
-      </div>
-      <div class="wine-countries">
+    <section class="wine-group">
+      <h3 class="wine-group__title">${groupTitle}</h3>
+      <div class="wine-country-list">
         ${group.countries
           .map(
             (country) => `
-              <article class="wine-country">
-                <h4 class="wine-country__title">${country.country}</h4>
-                <div class="wine-list">
+              <article class="wine-country-block">
+                <div class="wine-country-block__head">
+                  <img
+                    class="wine-country-block__pin"
+                    src="./assets/wine/pins/${wineFlagMap[slugify(country.country)]}.png"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                  <h4 class="wine-country-block__title">${country.country}</h4>
+                </div>
+                <div class="wine-country-block__items">
                   ${country.items
                     .map(
                       (item) => `
-                        <div class="wine-item">
-                          <span class="wine-item__name">${item.name}</span>
-                          <strong class="wine-item__price">${item.price}</strong>
+                        <div class="wine-line">
+                          <span class="wine-line__name">${item.name}</span>
+                          <strong class="wine-line__price">${item.price}</strong>
                         </div>
                       `
                     )
                     .join("")}
+                </div>
+              </article>
+            `
+          )
+          .join("")}
+      </div>
+    </section>
+  `;
+}
+
+function renderWineSection(section) {
+  const groupsByTitle = new Map(
+    section.groups.map((group) => [slugify(group.title), group])
+  );
+
+  const pages = winePageLayout.map((titles) =>
+    titles
+      .map((title) => groupsByTitle.get(slugify(title)))
+      .filter(Boolean)
+  );
+
+  return `
+    <section class="menu-section menu-section--wine" id="${section.id}" aria-labelledby="${section.id}-label">
+      <h2 class="sr-only" id="${section.id}-label">${section.title}</h2>
+      <div class="wine-pages">
+        ${pages
+          .map(
+            (pageGroups) => `
+              <article class="wine-page">
+                <img
+                  class="wine-page__rail"
+                  src="./assets/wine/bottle-rail-clean.png"
+                  alt=""
+                  aria-hidden="true"
+                />
+                <div class="wine-page__panel">
+                  <img
+                    class="wine-page__header"
+                    src="./assets/wine/header-wide.png"
+                    alt="Frege Carta de Vinhos"
+                  />
+                  <div class="wine-page__groups">
+                    ${pageGroups.map(renderWineGroup).join("")}
+                  </div>
+                  <img
+                    class="wine-page__footer"
+                    src="./assets/wine/diawine-clean.png"
+                    alt=""
+                    aria-hidden="true"
+                  />
                 </div>
               </article>
             `
@@ -156,6 +245,10 @@ function renderStandardGroup(group) {
 }
 
 function renderSection(section) {
+  if (section.theme === "wine") {
+    return renderWineSection(section);
+  }
+
   const sectionArt =
     section.art && artMap[section.art]
       ? `<img class="menu-section__art menu-section__art--${section.art}" src="${artMap[section.art]}" alt="" aria-hidden="true" />`
