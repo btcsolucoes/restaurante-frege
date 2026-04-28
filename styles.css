@@ -210,7 +210,7 @@ main {
 
 .menu-section {
   position: relative;
-  width: min(100%, 1180px);
+  width: min(100%, 1024px);
   margin: 0 auto;
   padding: 56px 18px 0;
   scroll-margin-top: 72px;
@@ -221,6 +221,7 @@ main {
 }
 
 .menu-section--wine {
+  width: min(100%, 1180px);
   margin-top: 40px;
   padding: 56px 18px 0;
   background: transparent;
@@ -236,6 +237,27 @@ main {
   transform-origin: center;
 }
 
+#entradas,
+#almoco-principal,
+#executivo,
+#bebidas,
+#classicos,
+#destilados {
+  --section-content-width: 760px;
+}
+
+#entradas {
+  --section-content-width: 860px;
+}
+
+#almoco-principal {
+  --section-content-width: 860px;
+}
+
+#destilados {
+  --section-content-width: 820px;
+}
+
 .section-heading {
   position: relative;
   z-index: 1;
@@ -247,6 +269,8 @@ main {
 .section-heading > div {
   display: grid;
   justify-items: center;
+  width: min(100%, var(--section-content-width, 100%));
+  margin: 0 auto;
 }
 
 .ornament-title {
@@ -428,6 +452,8 @@ main {
   z-index: 1;
   display: grid;
   gap: 22px;
+  width: min(100%, var(--section-content-width, 100%));
+  margin: 0 auto;
 }
 
 .menu-group {
@@ -675,80 +701,80 @@ main {
 }
 
 #entradas .menu-section__art--cup {
-  width: 112px;
-  left: 10px;
-  top: 32%;
-  transform: translateX(-26%);
+  width: 96px;
+  left: 0;
+  top: 28%;
+  transform: none;
 }
 
 #entradas .menu-section__art--branch {
-  width: 92px;
-  right: 10px;
-  top: 46%;
-  transform: translateX(22%);
+  width: 78px;
+  right: 0;
+  top: 47%;
+  transform: none;
 }
 
 #almoco-principal .menu-section__art--cup {
-  width: 122px;
-  right: 4px;
+  width: 92px;
+  right: -32px;
   top: 12%;
-  transform: translateX(12%);
+  transform: none;
 }
 
 #almoco-principal .menu-section__art--branch {
-  width: 104px;
-  right: 14px;
-  top: 37%;
-  transform: translateX(22%);
+  width: 92px;
+  right: 0;
+  top: 40%;
+  transform: none;
 }
 
 #executivo .menu-section__art--branch {
-  width: 100px;
-  right: 16px;
+  width: 88px;
+  right: 0;
   top: 10%;
-  transform: translateX(18%);
+  transform: none;
 }
 
 #bebidas .menu-section__art--bottle {
-  width: 102px;
-  left: -18px;
-  top: 18%;
-  transform: translateX(-18%);
+  width: 92px;
+  left: 0;
+  top: 16%;
+  transform: none;
 }
 
 #bebidas .menu-section__art--martini {
-  width: 92px;
-  right: -12px;
-  top: 61%;
-  transform: translateX(12%);
+  width: 82px;
+  right: 0;
+  top: 63%;
+  transform: none;
 }
 
 #classicos .menu-section__art--shell {
-  width: 84px;
-  left: -18px;
-  top: 35%;
-  transform: translateX(-14%);
+  width: 76px;
+  left: 0;
+  top: 36%;
+  transform: none;
 }
 
 #classicos .menu-section__art--martini {
-  width: 84px;
-  right: -14px;
+  width: 82px;
+  right: 0;
   top: 58%;
-  transform: translateX(10%);
+  transform: none;
 }
 
 #destilados .menu-section__art--shell {
-  width: 84px;
-  left: -18px;
-  top: 74%;
-  transform: translateX(-14%);
+  width: 78px;
+  left: 0;
+  top: 76%;
+  transform: none;
 }
 
 #destilados .menu-section__art--martini {
-  width: 84px;
-  right: -14px;
-  top: 54%;
-  transform: translateX(10%);
+  width: 82px;
+  right: 0;
+  top: 56%;
+  transform: none;
 }
 
 .footer {
@@ -869,6 +895,22 @@ main {
     gap: 10px;
   }
 
+  #entradas .menu-section__art--cup,
+  #entradas .menu-section__art--branch,
+  #almoco-principal .menu-section__art--cup,
+  #almoco-principal .menu-section__art--branch,
+  #executivo .menu-section__art--branch,
+  #bebidas .menu-section__art--bottle,
+  #bebidas .menu-section__art--martini,
+  #classicos .menu-section__art--shell,
+  #classicos .menu-section__art--martini,
+  #destilados .menu-section__art--shell,
+  #destilados .menu-section__art--martini {
+    display: none;
+  }
+}
+
+@media (max-width: 920px) {
   #entradas .menu-section__art--cup,
   #entradas .menu-section__art--branch,
   #almoco-principal .menu-section__art--cup,
