@@ -35,8 +35,8 @@ const weeklySpecials = {
 const menuSections = [
   {
     id: "entradas",
-    eyebrow: "Extraído do cardápio original",
     title: "Entradas",
+    eyebrow: "",
     note: "Para compartilhar",
     arts: ["cup", "branch"],
     groups: [

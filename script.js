@@ -108,11 +108,19 @@ function renderItemColumns(items, columns = 1) {
   `;
 }
 
+function renderOrnamentTitle(tagName, className, text) {
+  return `
+    <${tagName} class="${className} ornament-title">
+      <span class="ornament-title__text">${text}</span>
+    </${tagName}>
+  `;
+}
+
 function renderBlockGroup(group) {
   return `
     <section class="menu-group">
       <div class="menu-group__header">
-        <h3 class="menu-group__title">${group.title}</h3>
+        ${renderOrnamentTitle("h3", "menu-group__title", group.title)}
         ${group.note ? `<p class="menu-group__note">${group.note}</p>` : ""}
       </div>
       <div class="menu-blocks">
@@ -236,7 +244,7 @@ function renderStandardGroup(group) {
   return `
     <section class="menu-group">
       <div class="menu-group__header">
-        <h3 class="menu-group__title">${group.title}</h3>
+        ${renderOrnamentTitle("h3", "menu-group__title", group.title)}
         ${group.note ? `<p class="menu-group__note">${group.note}</p>` : ""}
       </div>
       ${renderItemColumns(group.items, group.columns || 1)}
@@ -262,8 +270,8 @@ function renderSection(section) {
       ${sectionArts}
       <div class="section-heading">
         <div>
-          <span class="section-heading__eyebrow">${section.eyebrow}</span>
-          <h2 class="section-heading__title">${section.title}</h2>
+          ${section.eyebrow ? `<span class="section-heading__eyebrow">${section.eyebrow}</span>` : ""}
+          ${renderOrnamentTitle("h2", "section-heading__title", section.title)}
           ${section.note ? `<p class="section-heading__note">${section.note}</p>` : ""}
         </div>
       </div>
