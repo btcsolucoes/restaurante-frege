@@ -249,20 +249,17 @@ function renderSection(section) {
     return renderWineSection(section);
   }
 
-  const sectionArt =
-    section.art && artMap[section.art]
-      ? `<img class="menu-section__art menu-section__art--${section.art}" src="${artMap[section.art]}" alt="" aria-hidden="true" />`
-      : "";
-
-  const wineLogo =
-    section.theme === "wine"
-      ? `<img class="menu-section__wine-logo" src="./assets/logo-gold.png" alt="Frege" />`
-      : "";
+  const sectionArts = (section.arts || (section.art ? [section.art] : []))
+    .filter((art) => artMap[art])
+    .map(
+      (art) =>
+        `<img class="menu-section__art menu-section__art--${art}" src="${artMap[art]}" alt="" aria-hidden="true" />`
+    )
+    .join("");
 
   return `
-    <section class="menu-section ${section.theme === "wine" ? "menu-section--wine" : ""}" id="${section.id}">
-      ${sectionArt}
-      ${wineLogo}
+    <section class="menu-section menu-section--${section.id}" id="${section.id}">
+      ${sectionArts}
       <div class="section-heading">
         <div>
           <span class="section-heading__eyebrow">${section.eyebrow}</span>

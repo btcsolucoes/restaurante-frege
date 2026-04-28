@@ -38,7 +38,7 @@ const menuSections = [
     eyebrow: "Extraído do cardápio original",
     title: "Entradas",
     note: "Para compartilhar",
-    art: "branch",
+    arts: ["cup", "branch"],
     groups: [
       {
         title: "Entradas",
@@ -153,7 +153,7 @@ const menuSections = [
     eyebrow: "Para 1 ou 2 pessoas",
     title: "Almoço Principal",
     note: "Pratos da casa",
-    art: "cup",
+    arts: ["cup", "branch"],
     groups: [
       {
         title: "Principais",
@@ -284,7 +284,7 @@ const menuSections = [
     eyebrow: "Terça a domingo",
     title: "Executivo",
     note: "11h às 15h",
-    art: "branch",
+    arts: ["branch"],
     groups: [
       {
         title: "Prato Executivo | R$ 29,90",
@@ -434,7 +434,7 @@ const menuSections = [
     eyebrow: "Bar do Frege",
     title: "Bebidas",
     note: "Bebidas, cervejas e drinks autorais",
-    art: "martini",
+    arts: ["bottle", "martini"],
     groups: [
       {
         title: "Bebidas",
@@ -512,7 +512,7 @@ const menuSections = [
     eyebrow: "Coquetelaria",
     title: "Clássicos",
     note: "Sem álcool e clássicos do bar",
-    art: "shell",
+    arts: ["shell", "martini"],
     groups: [
       {
         title: "Álcool Free",
@@ -617,7 +617,7 @@ const menuSections = [
     eyebrow: "Dose e garrafa",
     title: "Destilados",
     note: "Destilados e cachaças",
-    art: "bottle",
+    arts: ["shell", "martini"],
     groups: [
       {
         title: "Destilados",
