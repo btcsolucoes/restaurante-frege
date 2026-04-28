@@ -130,7 +130,7 @@ function renderBlockGroup(group) {
               return `
                 <article class="menu-block">
                   <h4 class="menu-block__title">${block.label}</h4>
-                  <div class="menu-list">${block.items.map(renderMenuItem).join("")}</div>
+                  ${renderItemColumns(block.items, 1)}
                 </article>
               `;
             }
@@ -247,7 +247,7 @@ function renderStandardGroup(group) {
         ${renderOrnamentTitle("h3", "menu-group__title", group.title)}
         ${group.note ? `<p class="menu-group__note">${group.note}</p>` : ""}
       </div>
-      ${renderItemColumns(group.items, group.columns || 1)}
+      ${renderItemColumns(group.items, 1)}
     </section>
   `;
 }

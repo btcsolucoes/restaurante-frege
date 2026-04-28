@@ -55,37 +55,12 @@ img {
 
 .hero {
   position: relative;
-  min-height: 100svh;
+  min-height: 88svh;
   display: grid;
   place-items: center;
   padding: 40px 20px 72px;
   overflow: hidden;
-  background:
-    radial-gradient(circle at center, rgba(255, 255, 255, 0.045), transparent 48%),
-    linear-gradient(180deg, var(--terracotta) 0%, var(--terracotta-deep) 100%);
-}
-
-.hero::before,
-.hero::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  border: 1px solid rgba(244, 184, 148, 0.1);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-}
-
-.hero::before {
-  width: min(94vw, 720px);
-  height: min(94vw, 720px);
-}
-
-.hero::after {
-  width: min(120vw, 1040px);
-  height: min(120vw, 1040px);
-  border-color: rgba(244, 184, 148, 0.05);
+  background: linear-gradient(180deg, var(--terracotta) 0%, var(--terracotta-deep) 100%);
 }
 
 .hero__content {
@@ -109,7 +84,7 @@ img {
 }
 
 .hero__logo {
-  width: min(82vw, 620px);
+  width: min(84vw, 700px);
   margin-bottom: 0;
 }
 
@@ -124,16 +99,16 @@ img {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 210px;
-  min-height: 54px;
-  padding: 14px 28px;
+  min-width: 198px;
+  min-height: 50px;
+  padding: 12px 24px;
   border: 1px solid rgba(244, 184, 148, 0.4);
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.04);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.03);
   color: var(--white);
   text-decoration: none;
   text-transform: uppercase;
-  font-size: 0.8rem;
+  font-size: 0.76rem;
   font-weight: 900;
   transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
 }
@@ -152,15 +127,15 @@ img {
 }
 
 .hero__art--cup {
-  width: min(22vw, 180px);
-  left: clamp(12px, 4vw, 44px);
-  bottom: clamp(18px, 5vw, 40px);
+  width: min(18vw, 148px);
+  left: clamp(18px, 5vw, 58px);
+  bottom: clamp(28px, 7vw, 68px);
 }
 
 .hero__art--branch {
-  width: min(26vw, 220px);
-  right: clamp(8px, 4vw, 34px);
-  top: clamp(26px, 8vw, 70px);
+  width: min(22vw, 170px);
+  right: clamp(12px, 4vw, 44px);
+  top: clamp(34px, 8vw, 82px);
 }
 
 .section-nav {
@@ -243,27 +218,27 @@ main {
 #bebidas,
 #classicos,
 #destilados {
-  --section-content-max: 760px;
-  --section-gutter: 128px;
+  --section-content-max: 640px;
+  --section-gutter: 138px;
 }
 
 #entradas {
-  --section-content-max: 860px;
+  --section-content-max: 660px;
 }
 
 #almoco-principal {
-  --section-content-max: 860px;
+  --section-content-max: 700px;
 }
 
 #destilados {
-  --section-content-max: 820px;
+  --section-content-max: 680px;
 }
 
 .section-heading {
   position: relative;
   z-index: 1;
   display: block;
-  margin-bottom: 24px;
+  margin-bottom: 30px;
   text-align: center;
 }
 
@@ -304,7 +279,7 @@ main {
 .section-heading__title {
   margin: 0;
   text-transform: uppercase;
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(2.25rem, 4vw, 3.35rem);
   font-weight: 900;
   line-height: 1.04;
 }
@@ -326,11 +301,11 @@ main {
 }
 
 .featured-panel {
-  padding: 24px 22px;
-  border: 1px solid var(--border);
+  padding: 26px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.045);
-  box-shadow: 0 18px 42px var(--shadow);
+  background: rgba(255, 255, 255, 0.035);
+  box-shadow: none;
 }
 
 .featured-panel__status {
@@ -452,18 +427,18 @@ main {
   position: relative;
   z-index: 1;
   display: grid;
-  gap: 22px;
+  gap: 34px;
   width: min(var(--section-content-max, 100%), calc(100% - (var(--section-gutter, 0px) * 2)));
   margin: 0 auto;
 }
 
 .menu-group {
   position: relative;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: #d45b2b;
-  box-shadow: 0 16px 34px var(--shadow);
-  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
 }
 
 .menu-group--wine {
@@ -474,7 +449,7 @@ main {
 .menu-group__header {
   position: relative;
   z-index: 3;
-  padding: 20px 18px 0;
+  padding: 0 0 8px;
   text-align: center;
 }
 
@@ -482,9 +457,9 @@ main {
   margin: 0;
   width: 100%;
   text-transform: uppercase;
-  font-size: clamp(1.08rem, 1.9vw, 1.52rem);
+  font-size: clamp(1.3rem, 2.2vw, 2rem);
   font-weight: 900;
-  line-height: 1.12;
+  line-height: 1;
 }
 
 .menu-group__title.ornament-title {
@@ -493,66 +468,65 @@ main {
 }
 
 .menu-group__note {
-  margin: 8px auto 0;
+  margin: 6px auto 0;
   max-width: 560px;
   color: rgba(255, 255, 255, 0.74);
-  line-height: 1.6;
+  line-height: 1.35;
   text-align: center;
 }
 
 .menu-list-columns {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0;
+  display: block;
 }
 
 .menu-list {
   position: relative;
   z-index: 3;
-  padding: 8px 18px 16px;
-}
-
-.menu-list-columns > .menu-list:first-child {
-  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0;
 }
 
 .menu-item {
-  padding: 16px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.menu-item:first-child {
-  border-top: 0;
+  padding: 10px 0 12px;
 }
 
 .menu-item__row {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 16px;
+  display: inline-grid;
+  grid-template-columns: minmax(0, auto) auto;
+  align-items: baseline;
+  justify-content: center;
+  gap: 12px;
+  max-width: 100%;
 }
 
 .menu-item__name {
   margin: 0;
   text-transform: uppercase;
-  font-size: 1rem;
+  font-size: clamp(1.08rem, 1.55vw, 1.34rem);
   font-weight: 900;
-  line-height: 1.45;
+  line-height: 1.16;
+  text-align: center;
 }
 
 .menu-item__price {
   flex-shrink: 0;
-  font-size: 1rem;
+  font-size: clamp(1rem, 1.45vw, 1.28rem);
   font-weight: 900;
   white-space: nowrap;
+}
+
+.menu-item,
+.menu-block {
+  text-align: center;
 }
 
 .menu-item__description,
 .menu-item__note,
 .menu-block__text {
-  margin: 8px 0 0;
+  margin: 4px auto 0;
+  max-width: 620px;
   color: rgba(255, 255, 255, 0.84);
-  line-height: 1.7;
+  line-height: 1.24;
+  font-size: clamp(0.96rem, 1.18vw, 1.08rem);
 }
 
 .menu-item__note {
@@ -564,25 +538,21 @@ main {
   position: relative;
   z-index: 3;
   display: grid;
-  gap: 0;
-  padding: 8px 18px 16px;
+  gap: 14px;
+  padding: 0;
 }
 
 .menu-block {
-  padding: 16px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.menu-block:first-child {
-  border-top: 0;
+  padding: 0;
 }
 
 .menu-block__title {
   margin: 0 0 8px;
   text-transform: uppercase;
-  font-size: 0.94rem;
+  font-size: 1.08rem;
   font-weight: 900;
   color: var(--terracotta-soft-strong);
+  text-align: center;
 }
 
 .wine-pages {
@@ -703,78 +673,78 @@ main {
 
 #entradas .menu-section__art--cup {
   width: 96px;
-  left: 0;
-  top: 28%;
+  left: 14px;
+  top: 24%;
   transform: none;
 }
 
 #entradas .menu-section__art--branch {
   width: 78px;
-  right: 0;
-  top: 47%;
+  right: 14px;
+  top: 43%;
   transform: none;
 }
 
 #almoco-principal .menu-section__art--cup {
   width: 92px;
-  right: -32px;
+  right: 18px;
   top: 12%;
   transform: none;
 }
 
 #almoco-principal .menu-section__art--branch {
   width: 92px;
-  right: 0;
-  top: 40%;
+  right: 10px;
+  top: 38%;
   transform: none;
 }
 
 #executivo .menu-section__art--branch {
   width: 88px;
-  right: 0;
-  top: 10%;
+  right: 14px;
+  top: 8%;
   transform: none;
 }
 
 #bebidas .menu-section__art--bottle {
   width: 92px;
-  left: 0;
-  top: 16%;
+  left: 12px;
+  top: 14%;
   transform: none;
 }
 
 #bebidas .menu-section__art--martini {
   width: 82px;
-  right: 0;
-  top: 63%;
+  right: 10px;
+  top: 60%;
   transform: none;
 }
 
 #classicos .menu-section__art--shell {
   width: 76px;
-  left: 0;
-  top: 36%;
+  left: 12px;
+  top: 34%;
   transform: none;
 }
 
 #classicos .menu-section__art--martini {
   width: 82px;
-  right: 0;
-  top: 58%;
+  right: 10px;
+  top: 55%;
   transform: none;
 }
 
 #destilados .menu-section__art--shell {
   width: 78px;
-  left: 0;
-  top: 76%;
+  left: 12px;
+  top: 74%;
   transform: none;
 }
 
 #destilados .menu-section__art--martini {
   width: 82px;
-  right: 0;
-  top: 56%;
+  right: 10px;
+  top: 51%;
   transform: none;
 }
 
