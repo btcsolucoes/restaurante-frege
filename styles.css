@@ -71,7 +71,7 @@ img {
 .hero__content {
   position: relative;
   z-index: 1;
-  width: min(100%, 820px);
+  width: min(100%, 760px);
   display: grid;
   justify-items: center;
 }
@@ -115,45 +115,7 @@ img {
 
 .hero__logo {
   width: min(88vw, 780px);
-  margin-bottom: 16px;
-}
-
-.hero__subtitle {
-  margin: 0 0 34px;
-  max-width: 560px;
-  font-size: 0.98rem;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.72);
-}
-
-.hero__pills {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-  margin-bottom: 30px;
-}
-
-.hero__pill {
-  min-width: 220px;
-  padding: 10px 16px;
-  border: 1px solid rgba(244, 184, 148, 0.28);
-  border-radius: 4px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.hero__pill-label {
-  font-size: 0.64rem;
-  text-transform: uppercase;
-  font-weight: 800;
-  color: var(--terracotta-soft);
-}
-
-.hero__pill-value {
-  font-size: 0.82rem;
-  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 28px;
 }
 
 .hero__cta {
@@ -250,9 +212,9 @@ img {
 
 .section__title {
   margin: 0;
-  font-family: "Playfair Display", serif;
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 700;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 800;
+  text-transform: uppercase;
   line-height: 1;
 }
 
@@ -281,8 +243,9 @@ img {
 
 .special-card__title {
   margin: 16px 0 6px;
-  font-family: "Playfair Display", serif;
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 800;
+  text-transform: uppercase;
   line-height: 1;
 }
 
@@ -325,9 +288,8 @@ img {
 }
 
 .special-card__meta strong {
-  font-family: "Playfair Display", serif;
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.2rem;
+  font-weight: 800;
 }
 
 .special-card__note {
@@ -340,7 +302,7 @@ img {
 }
 
 .menu-pages--double {
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 }
 
 .menu-page {
@@ -372,11 +334,6 @@ img {
 @media (max-width: 760px) {
   .hero {
     padding-top: 24px;
-  }
-
-  .hero__pill {
-    width: 100%;
-    min-width: 0;
   }
 
   .section-nav__link {
