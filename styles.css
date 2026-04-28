@@ -210,7 +210,7 @@ main {
 
 .menu-section {
   position: relative;
-  width: min(100%, 1024px);
+  width: min(100%, 1180px);
   margin: 0 auto;
   padding: 56px 18px 0;
   scroll-margin-top: 72px;
@@ -243,19 +243,20 @@ main {
 #bebidas,
 #classicos,
 #destilados {
-  --section-content-width: 760px;
+  --section-content-max: 760px;
+  --section-gutter: 128px;
 }
 
 #entradas {
-  --section-content-width: 860px;
+  --section-content-max: 860px;
 }
 
 #almoco-principal {
-  --section-content-width: 860px;
+  --section-content-max: 860px;
 }
 
 #destilados {
-  --section-content-width: 820px;
+  --section-content-max: 820px;
 }
 
 .section-heading {
@@ -269,7 +270,7 @@ main {
 .section-heading > div {
   display: grid;
   justify-items: center;
-  width: min(100%, var(--section-content-width, 100%));
+  width: min(var(--section-content-max, 100%), calc(100% - (var(--section-gutter, 0px) * 2)));
   margin: 0 auto;
 }
 
@@ -452,7 +453,7 @@ main {
   z-index: 1;
   display: grid;
   gap: 22px;
-  width: min(100%, var(--section-content-width, 100%));
+  width: min(var(--section-content-max, 100%), calc(100% - (var(--section-gutter, 0px) * 2)));
   margin: 0 auto;
 }
 
