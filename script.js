@@ -1,37 +1,3 @@
-const weeklySpecials = {
-  2: {
-    day: "Terca-feira",
-    dish: "Moqueca de banana da terra",
-    description: "Acompanha arroz branco e farofinha.",
-    juice: "Limonada de coco",
-  },
-  3: {
-    day: "Quarta-feira",
-    dish: "Franguinho assado",
-    description: "Acompanha feijao preto, arroz branco e saladinha.",
-    juice: "Pink lemonade",
-  },
-  4: {
-    day: "Quinta-feira",
-    dish: "Parmegiana de frango",
-    description: "Acompanha espaguete e fritas.",
-    juice: "Limonada de jabuticaba",
-  },
-  5: {
-    day: "Sexta-feira",
-    dish: "Strogonoff de frango",
-    description: "Acompanha arroz e batata palha.",
-    juice: "Pinha fresh",
-  },
-  6: {
-    day: "Sabado",
-    dish: "Salada Rio Branco",
-    description:
-      "Mix de folhas, frango grelhado, grao de bico, cebola roxa, tomate cereja, coentro e molho mostarda e mel.",
-    juice: "Suco tropical da casa",
-  },
-};
-
 const serviceDays = [2, 3, 4, 5, 6];
 const serviceStartHour = 11;
 const serviceEndHour = 15;
@@ -42,8 +8,17 @@ const featuredDish = document.querySelector("#featured-dish");
 const featuredDescription = document.querySelector("#featured-description");
 const featuredJuice = document.querySelector("#featured-juice");
 const featuredNote = document.querySelector("#featured-note");
+const weekStrip = document.querySelector("#week-strip");
 const navLinks = [...document.querySelectorAll(".section-nav__link")];
-const observedSections = [...document.querySelectorAll("main .section")];
+const menuSectionsContainer = document.querySelector("#menu-sections");
+
+const artMap = {
+  branch: "./assets/crops/branch.png",
+  cup: "./assets/crops/cup.png",
+  bottle: "./assets/crops/bottle.png",
+  martini: "./assets/crops/martini.png",
+  shell: "./assets/crops/shell.png",
+};
 
 function getNextServiceDay(baseDate, startOffset = 0) {
   const probe = new Date(baseDate);
@@ -66,6 +41,185 @@ function formatDate(date) {
   }).format(date);
 }
 
+function renderMenuItem(item) {
+  return `
+    <article class="menu-item">
+      <div class="menu-item__row">
+        <h4 class="menu-item__name">${item.name}</h4>
+        ${item.price ? `<strong class="menu-item__price">${item.price}</strong>` : ""}
+      </div>
+      ${item.description ? `<p class="menu-item__description">${item.description}</p>` : ""}
+      ${item.note ? `<p class="menu-item__note">${item.note}</p>` : ""}
+    </article>
+  `;
+}
+
+function renderItemColumns(items, columns = 1) {
+  if (columns <= 1 || items.length < 4) {
+    return `<div class="menu-list">${items.map(renderMenuItem).join("")}</div>`;
+  }
+
+  const chunkSize = Math.ceil(items.length / columns);
+  const chunks = [];
+
+  for (let index = 0; index < columns; index += 1) {
+    chunks.push(items.slice(index * chunkSize, index * chunkSize + chunkSize));
+  }
+
+  return `
+    <div class="menu-list-columns">
+      ${chunks
+        .filter((chunk) => chunk.length)
+        .map(
+          (chunk) => `<div class="menu-list">${chunk.map(renderMenuItem).join("")}</div>`
+        )
+        .join("")}
+    </div>
+  `;
+}
+
+function renderBlockGroup(group) {
+  return `
+    <section class="menu-group">
+      <div class="menu-group__header">
+        <h3 class="menu-group__title">${group.title}</h3>
+        ${group.note ? `<p class="menu-group__note">${group.note}</p>` : ""}
+      </div>
+      <div class="menu-blocks">
+        ${group.blocks
+          .map((block) => {
+            if (block.items) {
+              return `
+                <article class="menu-block">
+                  <h4 class="menu-block__title">${block.label}</h4>
+                  <div class="menu-list">${block.items.map(renderMenuItem).join("")}</div>
+                </article>
+              `;
+            }
+
+            return `
+              <article class="menu-block">
+                <h4 class="menu-block__title">${block.label}</h4>
+                <p class="menu-block__text">${block.text}</p>
+              </article>
+            `;
+          })
+          .join("")}
+      </div>
+    </section>
+  `;
+}
+
+function renderWineGroup(group) {
+  return `
+    <section class="menu-group menu-group--wine">
+      <div class="menu-group__header">
+        <h3 class="menu-group__title">${group.title}</h3>
+      </div>
+      <div class="wine-countries">
+        ${group.countries
+          .map(
+            (country) => `
+              <article class="wine-country">
+                <h4 class="wine-country__title">${country.country}</h4>
+                <div class="wine-list">
+                  ${country.items
+                    .map(
+                      (item) => `
+                        <div class="wine-item">
+                          <span class="wine-item__name">${item.name}</span>
+                          <strong class="wine-item__price">${item.price}</strong>
+                        </div>
+                      `
+                    )
+                    .join("")}
+                </div>
+              </article>
+            `
+          )
+          .join("")}
+      </div>
+    </section>
+  `;
+}
+
+function renderStandardGroup(group) {
+  return `
+    <section class="menu-group">
+      <div class="menu-group__header">
+        <h3 class="menu-group__title">${group.title}</h3>
+        ${group.note ? `<p class="menu-group__note">${group.note}</p>` : ""}
+      </div>
+      ${renderItemColumns(group.items, group.columns || 1)}
+    </section>
+  `;
+}
+
+function renderSection(section) {
+  const sectionArt =
+    section.art && artMap[section.art]
+      ? `<img class="menu-section__art menu-section__art--${section.art}" src="${artMap[section.art]}" alt="" aria-hidden="true" />`
+      : "";
+
+  const wineLogo =
+    section.theme === "wine"
+      ? `<img class="menu-section__wine-logo" src="./assets/logo-gold.png" alt="Frege" />`
+      : "";
+
+  return `
+    <section class="menu-section ${section.theme === "wine" ? "menu-section--wine" : ""}" id="${section.id}">
+      ${sectionArt}
+      ${wineLogo}
+      <div class="section-heading">
+        <div>
+          <span class="section-heading__eyebrow">${section.eyebrow}</span>
+          <h2 class="section-heading__title">${section.title}</h2>
+          ${section.note ? `<p class="section-heading__note">${section.note}</p>` : ""}
+        </div>
+      </div>
+      <div class="menu-groups">
+        ${section.groups
+          .map((group) => {
+            if (group.type === "blocks") {
+              return renderBlockGroup(group);
+            }
+
+            if (group.type === "wine") {
+              return renderWineGroup(group);
+            }
+
+            return renderStandardGroup(group);
+          })
+          .join("")}
+      </div>
+    </section>
+  `;
+}
+
+function renderSections() {
+  menuSectionsContainer.innerHTML = menuSections.map(renderSection).join("");
+}
+
+function renderWeekStrip() {
+  const order = [2, 3, 4, 5, 6];
+  const today = new Date().getDay();
+
+  weekStrip.innerHTML = order
+    .map((day) => {
+      const item = weeklySpecials[day];
+      const active = today === day ? " week-card--active" : "";
+
+      return `
+        <article class="week-card${active}">
+          <span class="week-card__day">${item.day}</span>
+          <strong class="week-card__dish">${item.dish}</strong>
+          <span class="week-card__juice">${item.juice}</span>
+        </article>
+      `;
+    })
+    .join("");
+}
+
 function updateFeaturedDish() {
   const now = new Date();
   const dayIndex = now.getDay();
@@ -74,10 +228,10 @@ function updateFeaturedDish() {
   const isServiceHour =
     now.getHours() >= serviceStartHour && now.getHours() < serviceEndHour;
 
-  featuredHours.textContent = "Terca a sabado, das 11h as 15h";
+  featuredHours.textContent = "Terça a sábado, das 11h às 15h";
 
   if (isServiceDay && isServiceHour) {
-    featuredStatus.textContent = "Disponivel agora";
+    featuredStatus.textContent = "Disponível agora";
     featuredDish.textContent = activeSpecial.dish;
     featuredDescription.textContent = activeSpecial.description;
     featuredJuice.textContent = activeSpecial.juice;
@@ -90,17 +244,17 @@ function updateFeaturedDish() {
   const upcomingSpecial = weeklySpecials[nextDate.getDay()];
 
   if (isServiceDay && now.getHours() < serviceStartHour) {
-    featuredStatus.textContent = "Disponivel hoje a partir das 11h";
+    featuredStatus.textContent = "Disponível hoje a partir das 11h";
   } else if (isServiceDay) {
     featuredStatus.textContent = "Encerrado por hoje";
   } else {
-    featuredStatus.textContent = "Proxima sugestao";
+    featuredStatus.textContent = "Próxima sugestão";
   }
 
   featuredDish.textContent = upcomingSpecial.dish;
   featuredDescription.textContent = upcomingSpecial.description;
   featuredJuice.textContent = upcomingSpecial.juice;
-  featuredNote.textContent = `Proximo prato do dia: ${formatDate(nextDate)}.`;
+  featuredNote.textContent = `Próximo prato do dia: ${formatDate(nextDate)}.`;
 }
 
 function setActiveNav(id) {
@@ -111,13 +265,15 @@ function setActiveNav(id) {
 }
 
 function observeSections() {
+  const sections = [...document.querySelectorAll("main > .menu-section, #menu-sections > .menu-section")];
+
   const observer = new IntersectionObserver(
     (entries) => {
       const visibleEntry = entries
         .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        .sort((first, second) => second.intersectionRatio - first.intersectionRatio)[0];
 
-      if (visibleEntry?.target?.id) {
+      if (visibleEntry && visibleEntry.target && visibleEntry.target.id) {
         setActiveNav(visibleEntry.target.id);
       }
     },
@@ -127,8 +283,10 @@ function observeSections() {
     }
   );
 
-  observedSections.forEach((section) => observer.observe(section));
+  sections.forEach((section) => observer.observe(section));
 }
 
+renderSections();
+renderWeekStrip();
 updateFeaturedDish();
 observeSections();

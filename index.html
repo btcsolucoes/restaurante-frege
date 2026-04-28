@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Frege | Cardapio</title>
-    <meta name="description" content="Cardapio digital do Frege." />
+    <title>Frege | Cardápio</title>
+    <meta name="description" content="Cardápio digital do Frege." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -15,171 +15,89 @@
   </head>
   <body>
     <header class="hero" id="inicio">
-      <div class="hero__ring hero__ring--sm"></div>
-      <div class="hero__ring hero__ring--md"></div>
-      <div class="hero__ring hero__ring--lg"></div>
+      <img
+        class="hero__art hero__art--cup"
+        src="./assets/crops/cup.png"
+        alt=""
+        aria-hidden="true"
+      />
+      <img
+        class="hero__art hero__art--branch"
+        src="./assets/crops/branch.png"
+        alt=""
+        aria-hidden="true"
+      />
 
       <div class="hero__content">
-        <p class="hero__eyebrow">Cardapio Digital</p>
-        <div class="hero__divider" aria-hidden="true">
-          <span></span>
-          <i></i>
-          <span></span>
-        </div>
+        <p class="hero__eyebrow">Cardápio Digital</p>
         <img
           class="hero__logo"
           src="./assets/logo-white-hq.png"
           alt="Logo do Frege"
         />
-        <a class="hero__cta" href="#prato-do-dia">Abrir cardapio</a>
+        <p class="hero__copy">
+          Cardápio reconstruído a partir do material original do Frege, com
+          navegação por seções e prato do dia automático.
+        </p>
+        <a class="hero__cta" href="#prato-do-dia">Abrir cardápio</a>
       </div>
     </header>
 
-    <nav class="section-nav" aria-label="Secoes do cardapio">
+    <nav class="section-nav" aria-label="Seções do cardápio">
       <div class="section-nav__row">
         <a class="section-nav__link" href="#prato-do-dia">Prato do dia</a>
         <a class="section-nav__link" href="#entradas">Entradas</a>
-        <a class="section-nav__link" href="#almoco-principal">Almoco principal</a>
+        <a class="section-nav__link" href="#almoco-principal">Almoço</a>
         <a class="section-nav__link" href="#executivo">Executivo</a>
         <a class="section-nav__link" href="#bebidas">Bebidas</a>
-        <a class="section-nav__link" href="#coqueteis">Coqueteis</a>
+        <a class="section-nav__link" href="#classicos">Clássicos</a>
         <a class="section-nav__link" href="#destilados">Destilados</a>
-        <a class="section-nav__link" href="#vinhos">Carta de vinhos</a>
+        <a class="section-nav__link" href="#vinhos">Vinhos</a>
       </div>
     </nav>
 
     <main>
-      <section class="section section--special" id="prato-do-dia">
-        <div class="section__heading">
+      <section class="menu-section menu-section--featured" id="prato-do-dia">
+        <div class="section-heading">
           <div>
-            <span class="section__eyebrow">Atualizado online</span>
-            <h2 class="section__title">Prato do dia</h2>
+            <span class="section-heading__eyebrow">Atualizado automaticamente</span>
+            <h2 class="section-heading__title">Prato do dia</h2>
           </div>
         </div>
 
-        <div class="special-card">
-          <div class="special-card__status" id="featured-status"></div>
-          <h3 class="special-card__title" id="featured-dish"></h3>
-          <p class="special-card__hours" id="featured-hours"></p>
-          <p class="special-card__description" id="featured-description"></p>
-
-          <div class="special-card__grid">
-            <div class="special-card__meta">
-              <span class="special-card__label">Suco do dia</span>
-              <strong id="featured-juice"></strong>
+        <div class="featured-panel">
+          <div class="featured-panel__status" id="featured-status"></div>
+          <div class="featured-panel__row">
+            <div class="featured-panel__main">
+              <h3 class="featured-panel__title" id="featured-dish"></h3>
+              <p class="featured-panel__hours" id="featured-hours"></p>
+              <p class="featured-panel__description" id="featured-description"></p>
             </div>
-            <div class="special-card__meta">
-              <span class="special-card__label">Preco</span>
-              <strong>R$ 29,90</strong>
+            <div class="featured-panel__aside">
+              <div class="featured-meta">
+                <span class="featured-meta__label">Suco do dia</span>
+                <strong class="featured-meta__value" id="featured-juice"></strong>
+              </div>
+              <div class="featured-meta">
+                <span class="featured-meta__label">Preço</span>
+                <strong class="featured-meta__value">R$ 29,90</strong>
+              </div>
             </div>
           </div>
-
-          <p class="special-card__note" id="featured-note"></p>
+          <p class="featured-panel__note" id="featured-note"></p>
         </div>
+
+        <div class="week-strip" id="week-strip"></div>
       </section>
 
-      <section class="section" id="entradas">
-        <div class="section__heading">
-          <div>
-            <span class="section__eyebrow">Pagina 1</span>
-            <h2 class="section__title">Entradas</h2>
-          </div>
-        </div>
-        <article class="menu-page">
-          <img src="./pages/page_1.png" alt="Pagina de entradas do Frege" />
-        </article>
-      </section>
-
-      <section class="section" id="almoco-principal">
-        <div class="section__heading">
-          <div>
-            <span class="section__eyebrow">Pagina 2</span>
-            <h2 class="section__title">Almoco principal</h2>
-          </div>
-        </div>
-        <article class="menu-page">
-          <img src="./pages/page_2.png" alt="Pagina de almoco principal do Frege" />
-        </article>
-      </section>
-
-      <section class="section" id="executivo">
-        <div class="section__heading">
-          <div>
-            <span class="section__eyebrow">Pagina 3</span>
-            <h2 class="section__title">Executivo, sobremesas e extras</h2>
-          </div>
-        </div>
-        <article class="menu-page">
-          <img
-            src="./pages/page_3.png"
-            alt="Pagina de prato executivo, sobremesas e porcao extra do Frege"
-          />
-        </article>
-      </section>
-
-      <section class="section" id="bebidas">
-        <div class="section__heading">
-          <div>
-            <span class="section__eyebrow">Pagina 4</span>
-            <h2 class="section__title">Bebidas e cervejas</h2>
-          </div>
-        </div>
-        <article class="menu-page">
-          <img src="./pages/page_4.png" alt="Pagina de bebidas, cervejas e drinks do Frege" />
-        </article>
-      </section>
-
-      <section class="section" id="coqueteis">
-        <div class="section__heading">
-          <div>
-            <span class="section__eyebrow">Paginas 5 e 6</span>
-            <h2 class="section__title">Coqueteis e classicos</h2>
-          </div>
-        </div>
-        <div class="menu-pages menu-pages--double">
-          <article class="menu-page">
-            <img src="./pages/page_5.png" alt="Pagina de coqueteis sem alcool e classicos do Frege" />
-          </article>
-          <article class="menu-page">
-            <img src="./pages/page_6.png" alt="Pagina de destilados e cachacas do Frege" />
-          </article>
-        </div>
-      </section>
-
-      <section class="section" id="destilados">
-        <div class="section__heading">
-          <div>
-            <span class="section__eyebrow">Destaque do menu</span>
-            <h2 class="section__title">Destilados e cachacas</h2>
-          </div>
-        </div>
-        <article class="menu-page">
-          <img src="./pages/page_6.png" alt="Pagina de destilados e cachacas do Frege" />
-        </article>
-      </section>
-
-      <section class="section section--wine" id="vinhos">
-        <div class="section__heading">
-          <div>
-            <span class="section__eyebrow">Paginas 7 e 8</span>
-            <h2 class="section__title">Carta de vinhos</h2>
-          </div>
-        </div>
-        <div class="menu-pages menu-pages--double">
-          <article class="menu-page menu-page--wine">
-            <img src="./pages/page_7.png" alt="Primeira pagina da carta de vinhos do Frege" />
-          </article>
-          <article class="menu-page menu-page--wine">
-            <img src="./pages/page_8.png" alt="Segunda pagina da carta de vinhos do Frege" />
-          </article>
-        </div>
-      </section>
+      <div id="menu-sections"></div>
     </main>
 
     <footer class="footer">
       <img class="footer__logo" src="./assets/logo-white.png" alt="Frege" />
     </footer>
 
+    <script src="./menu-data.js"></script>
     <script src="./script.js"></script>
   </body>
 </html>
