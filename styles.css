@@ -1046,7 +1046,7 @@ main {
 }
 
 .menu-section {
-  width: min(860px, calc(100% - 48px));
+  width: min(860px, calc(100vw - 48px));
 }
 
 .menu-list,
@@ -1069,8 +1069,43 @@ main {
   }
 
   .menu-section {
-    width: calc(100% - 24px);
+    width: calc(100vw - 24px);
   }
+}
+
+/* QrStack production refinements */
+.section-nav__row {
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.section-nav__row::-webkit-scrollbar {
+  display: none;
+}
+
+.menu-section {
+  padding-top: clamp(46px, 6vw, 74px);
+}
+
+.menu-section + .menu-section,
+#menu-sections > .menu-section + .menu-section {
+  margin-top: clamp(30px, 5vw, 58px);
+}
+
+#menu-sections {
+  display: grid;
+  gap: clamp(30px, 5vw, 58px);
+  margin-top: clamp(30px, 5vw, 58px);
+}
+
+.menu-groups {
+  display: grid;
+  gap: clamp(22px, 4vw, 38px);
+}
+
+.menu-group {
+  margin-top: 0;
 }
 
 @media (max-width: 390px) {
